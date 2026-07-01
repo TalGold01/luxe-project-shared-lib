@@ -16,6 +16,6 @@ This repository contains shared Jenkins pipeline functions and utilities for the
    - Default version: `main`
    - Include @Library in your Jenkinsfile:
      ```groovy
-     @Library('luxe-shared-lib') _
+     @Library('luxe-project-shared-lib') _
      dockerUtils.buildAndPush(...)
      ```
