@@ -12,7 +12,7 @@ This repository contains shared Jenkins pipeline functions and utilities for the
 
 1. Add this repository as a Shared Library in Jenkins:
    - Go to **Manage Jenkins → Configure System → Global Pipeline Libraries**
-   - Name: `luxe-shared-lib`
+   - Name: `luxe-project-shared-lib`
    - Default version: `main`
    - Include @Library in your Jenkinsfile:
      ```groovy
