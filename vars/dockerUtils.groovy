@@ -4,10 +4,10 @@
 def buildAndTagImage(String serviceName, String dockerHubImage, String nexusImage) {
     echo "Building Docker image for ${serviceName}"
     sh "docker-compose build ${serviceName}"
-    
+
     echo "Tagging Docker image for DockerHub"
     sh "docker tag ${dockerHubImage} ${dockerHubImage}:latest"
-    
+
     echo "Tagging Docker image for Nexus"
     sh "docker tag ${dockerHubImage} ${nexusImage}"
 }
@@ -30,4 +30,16 @@ def pushToNexus(String nexusImage, String nexusRegistry, String credentialsId='n
             docker push ${nexusImage}
         """
     }
+}
+
+def pullLatestImages(String... images) {
+    images.each { image ->
+        echo "Pulling latest: ${image}"
+        sh "docker pull ${image}:latest || true"
+    }
+}
+
+def snykScan(String image, String credentialsId='SNYK_TOKEN') {
+    echo "Running Snyk scan on ${image}"
+    sh "snyk container test ${image} --severity-threshold=critical || true"
 }
